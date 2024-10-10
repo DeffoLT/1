@@ -1,1 +1,28 @@
-$(random X-Y)
+// Підключаємо math.js через CDN
+const math = require('mathjs');
+
+// Функція для генерації випадкового математичного питання
+function generateMathQuiz() {
+  // Генеруємо випадкові числа для прикладу
+  const num1 = Math.floor(Math.random() * 100);
+  const num2 = Math.floor(Math.random() * 100);
+
+  // Оператори: додавання, віднімання, множення, ділення
+  const operators = ['+', '-', '*', '/'];
+  const operator = operators[Math.floor(Math.random() * operators.length)];
+
+  // Створюємо питання та обчислюємо відповідь
+  const question = `${num1} ${operator} ${num2}`;
+  const answer = math.evaluate(question);
+
+  return {
+    question,
+    answer
+  };
+}
+
+// Зберігаємо поточну вікторину
+let currentQuiz = generateMathQuiz();
+console.log(`Запитання: ${currentQuiz.question}`);
+
+// Виводимо питання в чат кожні 30 хвилин (використовуй інтеграцію з Twitch чат ботом
